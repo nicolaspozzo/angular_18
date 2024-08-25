@@ -17,4 +17,7 @@ export class ProductsService extends BaseHttpService {
       },
     });
   }
+  getProduct(id: string): Observable<Product> {
+    return this.http.get<Product>(`${this.apiUrl}/products/${id}`);
+  }
 }
