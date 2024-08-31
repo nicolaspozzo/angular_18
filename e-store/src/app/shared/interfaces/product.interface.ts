@@ -12,3 +12,10 @@ export interface Rating {
     rate:  number;
     count: number;
 }
+
+
+export interface ProductItemCart{
+    product: Product;
+    quantity: number;
+}
+

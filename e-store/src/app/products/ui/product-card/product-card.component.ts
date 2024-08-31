@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { Product } from '../../../shared/interfaces/product.interface';
 import { RouterLink } from '@angular/router';
 
@@ -7,9 +7,19 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [RouterLink],
   templateUrl: './product-card.component.html',
-  styles: ``
+  styles: ``,
 })
 export class ProductCardComponent {
-  product = input.required<Product>()
+  product = input.required<Product>();
 
+  addToCart = output<Product>();
+
+  add(event: Event) {
+    // Evitar la navegacion del routerLink de la card
+    event.stopPropagation();
+    event.preventDefault();
+
+    // Emitir el producto
+    this.addToCart.emit(this.product());
+  }
 }
